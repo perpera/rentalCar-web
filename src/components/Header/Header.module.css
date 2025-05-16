@@ -20,15 +20,14 @@
 .link {
     color: var(--main);
     transition: color 0.5s ease;
-}
 
-.link:hover {
-    color: var(--button-hover);
+ &:hover{
+color: var(--button-hover);
+ }
 }
 
 .active {
-    color: var(--button);
-
+    color: var(--button-hover);
 }
 
 p {

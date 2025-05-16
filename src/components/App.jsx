@@ -2,7 +2,7 @@ import { lazy} from 'react';
 /* import { useDispatch, useSelector } from 'react-redux'; */
 import { Route, Routes } from 'react-router-dom';
 
-const Hometab = lazy(() => import('../components/Hometab/Hometab'));
+const Hometab = lazy(() => import('../pages/Hometab/Hometab'));
 
 export default function App() {
     return (
