@@ -1,0 +1,166 @@
+.main {
+	box-sizing: border-box;
+	display: flex;
+	background-color: var(--gray);
+	color: var(--badges);
+	font: 1em/1.5;
+	height: 100vh;
+	transition:
+		background-color var(--trans-dur),
+		color var(--trans-dur);
+}
+
+.container {
+	display: grid;
+	grid-gap: 3em 1.5em;
+	margin: auto;
+	padding: 3em 0;
+	text-align: center;
+	font-size: calc(16px + (24 - 16) * (100vw - 320px) / (2560 - 320));
+}
+.main_text {
+	font-size: 3em;
+	line-height: 1;
+	margin: 0 0 1.5rem;
+}
+.dummy_text {
+	margin: 0 0 1.5em;
+}
+.btn_link {
+	background: var(--button);
+	border-radius: 1.5em;
+	display: inline-block;
+	padding: 0.75em 1.5em;
+	text-align: center;
+	transition: background-color 0.15s linear;
+}
+.btn_link,
+.btn_link:visited {
+	color:var(--white);
+}
+.btn_link:focus-visible,
+.btn_link:hover {
+	background: var(--button-hover);
+}
+
+.paper {
+	display: block;
+	margin: auto;
+	overflow: visible;
+	width: 100%;
+	max-width: 224px;
+	height: auto;
+}
+.paper__fill {
+	fill: var(--white);
+}
+.paper__outline,
+.paper__lines {
+	transition: stroke var(--trans-dur);
+}
+.paper__outline {
+	stroke: hsl(var(--hue),10%,10%);
+}
+.paper__lines {
+	stroke: hsl(var(--hue),10%,70%);
+}
+.paper__shadow {
+	fill: hsl(var(--hue),10%,70%);
+	transition: fill var(--trans-dur);
+}
+.paper__top,
+.paper__bottom,
+.paper__tear,
+.paper__tear_fill {
+	animation: paperTop 1.25s cubic-bezier(0.77,0,0.18,1);
+}
+.paper__top,
+.paper__bottom {
+	transform-origin: 0 148px;
+	transition: transform var(--trans-dur) cubic-bezier(0.77,0,0.18,1);
+}
+.paper__top {
+	transform: translate(0,8px);
+}
+.paper__bottom {
+	animation-name: paperBottom;
+	transform: translate(0,42px);
+}
+.paper__tear,
+.paper__tear-fill {
+	animation-timing-function: cubic-bezier(0.32,0,0.67,0);
+}
+.paper__tear {
+	animation-name: paperTear;
+	stroke-dashoffset: 0;
+}
+.paper__tear-fill {
+	animation-name: paperTearFill;
+}
+.paper__outline:hover .paper__top,
+.paper__outline:hover .paper__bottom {
+	transform: translate(0,25px);
+}
+
+/* Beyond mobile */
+@media (min-width: 768px) {
+	.paper {
+		max-width: 300px;
+	}
+}
+
+/* Animations */
+@keyframes paperTop {
+	from,
+	40% {
+		animation-timing-function: cubic-bezier(0.32,0,0.67,0);
+		transform: translate(0,25px) rotate(0);
+		transform-origin: 61px 148px;
+	}
+	70% {
+		animation-timing-function: cubic-bezier(0.33,1,0.67,1.5);
+		transform: translate(0,25px) rotate(-5deg);
+		transform-origin: 61px 148px;
+	}
+	to {
+		transform: translate(0,8px) rotate(0);
+		transform-origin: 0 148px;
+	}
+}
+@keyframes paperBottom {
+	from,
+	40% {
+		animation-timing-function: cubic-bezier(0.32,0,0.67,0);
+		transform: translate(0,25px) rotate(0);
+		transform-origin: 61px 148px;
+	}
+	70% {
+		animation-timing-function: cubic-bezier(0.33,1,0.67,1.5);
+		transform: translate(0,25px) rotate(5deg);
+		transform-origin: 61px 148px;
+	}
+	to {
+		transform: translate(0,42px) rotate(0);
+		transform-origin: 0 148px;
+	}
+}
+@keyframes paperTear {
+	from,
+	40% {
+		stroke-dashoffset: -198;
+	}
+	70%,
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+@keyframes paperTearFill {
+	from,
+	40% {
+		width: 187px;
+	}
+	70%,
+	to {
+		width: 0;
+	}
+}
