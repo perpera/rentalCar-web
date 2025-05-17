@@ -1,0 +1,10 @@
+.section {
+    height: calc(100vh - 68px);
+}
+
+.emptyMessage {
+  text-align: center;
+  font-size: 18px;
+  color: var(--gray);
+  margin-top: 40px;
+}
