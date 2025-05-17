@@ -1,12 +1,14 @@
+import styles from './Loader.module.css';
+
 export default function Loader() {
     return (
-        <div class="page">
-            <header class="header">
-		<h1 class="header-title">Loading, please wait</h1>
+        <div className={styles.page}>
+            <header className={styles.header}>
+		<h1 className={styles.header_title}>Loading, please wait</h1>
 	</header>
-    <main class="container">
-		<div class="item">
-			<i class="loader --4"></i>
+    <main className={styles.container}>
+		<div className={styles.item}>
+			<i className={styles.loader_4}></i>
 		</div>
 	</main>
 </div>

@@ -19,10 +19,7 @@
 	position: absolute;
 }
 
-/**
-	loader --4
-**/
-.loader.--4::before {
+.loader_4::before {
 	height: var(--size-bar);
 	width: 6vmin;
 	background-color: var(--color);
@@ -71,7 +68,7 @@
 	margin-bottom: 4vmin;
 }
 
-.header-title {
+.header_title {
 	font-size: 3.75vmin;
 }
 
