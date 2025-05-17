@@ -6,8 +6,8 @@ try {
     const params = {page, limit:12};
     if (brand) params.brand = brand;
     if (price) params.price = price;
-    if (mileageFrom) params.mileage_gte = mileageFrom;
-    if (mileageTo) params.mileage_lte = mileageTo;
+    if (mileageFrom != null) params.mileage_gte = mileageFrom;
+if (mileageTo != null) params.mileage_lte = mileageTo;
 
     const {data, headers} = await axios.get('/cars', {params});
     const totalPages = Number(headers['x-total-pages']) || 1;

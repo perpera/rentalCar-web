@@ -9,6 +9,7 @@ export default function Select({
   value,
   options,
   onChange,
+  placeholder,
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,7 +25,7 @@ export default function Select({
           onBlur={() => setIsOpen(false)}
           className={styles.select}
         >
-          <option value="">Choose a {label.toLowerCase()}</option>
+          <option value="">Choose a {placeholder}</option>
           {options.map((option) => (
             <option
               key={typeof option === "object" ? option.value : option}
