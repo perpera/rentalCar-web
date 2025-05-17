@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Select from "../../ui/Select/Select";
 import { selectBrands } from "../../redux/cars/selectors";
-import { setFilter } from "../../redux/filters/slice";
+import { setFilters } from "../../redux/filters/slice";
 import { fetchBrands } from "../../redux/cars/operations";
 import styles from "../FilterPanel/FilterPanel.module.css";
 
@@ -31,7 +31,7 @@ export default function FilterPanel() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(setFilter(localFilters));
+    dispatch(setFilters(localFilters));
   };
 
   return (
