@@ -17,4 +17,12 @@
 
 &:hover {
   border: 1px solid var(--button-hover);
+}
+  &:disabled {
+    cursor: auto;
+  
 }}
+
+.disabled {
+    cursor: progress;
+  }
