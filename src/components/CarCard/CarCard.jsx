@@ -43,7 +43,7 @@ const handleToggleFavorite = () => {
       <div className={styles.cardContent}>
         <div className={styles.titleRow}>
           <h2 className={styles.title}>
-            {brand} <span className={styles.model}>{model}</span>, {year}
+            {brand}  <span className={styles.model}>&nbsp;{model}</span>, {year}
           </h2>
           <span className={styles.price}>${rentalPrice}</span>
         </div>

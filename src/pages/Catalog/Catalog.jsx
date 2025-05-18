@@ -67,13 +67,6 @@ export default function Catalog() {
     }
   }, [cars]);
 
-//   const handleChangePage = () => {
-//     if (isLoading || !hasMore) {
-//       setPage(prev => prev + 1);
-//     }
-// console.log('page before', page);
-//   };
-
 const handleChangePage = () => {
   setPage(p => p + 1);
 };
