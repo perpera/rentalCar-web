@@ -7,10 +7,11 @@ import LoadMoreBtn from '../../components/LoadMoreBtn/LoadMoreBtn';
 import FilterPanel from '../../components/FilterPanel/FilterPanel';
 import Skeleton from '../../components/Skeleton/Skeleton';
 
-import { fetchCars } from '../../redux/cars/operations';
-import { resetCars } from '../../redux/cars/slice';
-import { resetFilters } from '../../redux/filters/slice';
-import { selectCars, selectCarsLoading, selectTotalPages, selectFilters } from '../../redux/cars/selectors';
+import { fetchCars } from '../../redux/cars/operations.js';
+import { resetCars } from '../../redux/cars/slice.js';
+import { resetFilters } from '../../redux/filters/slice.js';
+import { selectCars, selectCarsLoading} from '../../redux/cars/selectors.js';
+import {selectFilters} from '../../redux/filters/selectors.js';
 
 import styles from './Catalog.module.css';
 
@@ -19,7 +20,7 @@ export default function Catalog() {
   const cars = useSelector(selectCars);
   const isLoading = useSelector(selectCarsLoading);
   const filters = useSelector(selectFilters);
-  const totalPages = useSelector(selectTotalPages);
+  const hasMore = useSelector(state => state.cars.hasMore);
 
   const [page, setPage] = useState(1);
   const prevFiltersRef = useRef(filters);
@@ -32,7 +33,7 @@ export default function Catalog() {
     setPage(1);
     prevFiltersRef.current = filters;
     dispatch(fetchCars({ page: 1 }));
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const prevFilters = prevFiltersRef.current;
@@ -49,7 +50,7 @@ export default function Catalog() {
   useEffect(() => {
     if (page === 1) return;
     dispatch(fetchCars({ ...filters, page }));
-  }, [page, filters, dispatch]);
+  }, [page, filters]);
 
   useEffect(() => {
     if (page === 1 || isLoading) {
@@ -64,13 +65,18 @@ export default function Catalog() {
       newCard.scrollIntoView({ behavior: 'smooth' });
       prevCarsCountRef.current = cars.length;
     }
-  }, [cars, isLoading, page]);
+  }, [cars]);
 
-  const handleChangePage = () => {
-    if (page < totalPages) {
-      setPage(prev => prev + 1);
-    }
-  };
+//   const handleChangePage = () => {
+//     if (isLoading || !hasMore) {
+//       setPage(prev => prev + 1);
+//     }
+// console.log('page before', page);
+//   };
+
+const handleChangePage = () => {
+  setPage(p => p + 1);
+};
 
   return (
    <> <Skeleton/>
@@ -86,8 +92,10 @@ export default function Catalog() {
 
       {cars.length > 0 && <CarList />}
 
-      {cars.length > 0 && page < totalPages && (
-        <div ref={loadMoreRef}><LoadMoreBtn handleChangePage={handleChangePage} /></div>
+      {cars.length > 0 && hasMore && (
+        <div ref={loadMoreRef}><LoadMoreBtn onClick={handleChangePage} isLoading={isLoading}>
+  Load more
+</LoadMoreBtn></div>
       )}
     </section></>
   );

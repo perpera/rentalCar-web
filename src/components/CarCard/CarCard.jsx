@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import {toggleFavorite} from '../../redux/favorites/slice.js';
-import {selectFavorites} from '../../redux/cars/selectors.js';
+import {selectFavorites} from '../../redux/favorites/selector.js';
 import {formatMileage} from '../../utils/formatMileage.js';
 import {addressSplit} from '../../utils/addressSplit.js';
 import styles from './CarCard.module.css';

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Select from "../../ui/Select/Select";
-import { selectBrands } from "../../redux/cars/selectors";
+import { selectBrands } from "../../redux/brands/selectors.js";
 import { setFilters } from "../../redux/filters/slice";
 import { fetchBrands } from "../../redux/cars/operations";
 import styles from "../FilterPanel/FilterPanel.module.css";
@@ -21,11 +21,18 @@ export default function FilterPanel() {
     dispatch(fetchBrands());
   }, [dispatch]);
 
+  const formatNumber = (value) => {
+    const numericValue = value.replace(/\D/g, "");
+    return numericValue ? Number(numericValue).toLocaleString("en-US") : "";
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
+const formatted = name === "mileageFrom" || name === 'mileageTo' ? formatNumber(value) : value;
+
     setLocalFilters((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: formatted,
     }));
   };
 
@@ -42,7 +49,8 @@ export default function FilterPanel() {
           name="brand"
           value={localFilters.brand}
           onChange={handleChange}
-          options={brands}
+          options={brands.map((b)=> ({label: b, value: b}))}
+          placeholder='brand'
         />
       </div>
 
@@ -56,29 +64,33 @@ export default function FilterPanel() {
             label: `To ${p}`,
             value: String(p),
           }))}
+          placeholder='price'
         />
       </div>
 
       <fieldset className={styles.mileageBox}>
         <legend className={styles.mileageLegend}>Car mileage / km</legend>
-        <div className={styles.inputWrap}>
+        <div className={styles.wrapper}><div className={styles.inputWrap}>
+          <span className={styles.mileageInput}>From</span>
           <input
-            className={styles.fieldInput}
-            type="number"
+            className={`${styles.fieldInput} ${styles.fromInput}`}
+            type="text"
             name="mileageFrom"
-            placeholder="From "
             value={localFilters.mileageFrom}
             onChange={handleChange}
-          />
+            autoComplete="off"
+          /></div>
           <div className={styles.divider}></div>
-          <input
-            className={styles.fieldInput}
-            type="number"
+          <div className={styles.inputWrap}>
+            <span className={styles.mileageInput}>To</span><input
+            className={`${styles.fieldInput} ${styles.toInput}`}
+            type="text"
             name="mileageTo"
-            placeholder="To"
             value={localFilters.mileageTo}
             onChange={handleChange}
+            autoComplete="off"
           />
+          </div>
         </div>
       </fieldset>
 

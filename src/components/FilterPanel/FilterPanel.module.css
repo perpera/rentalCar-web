@@ -16,7 +16,7 @@
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 12px;
-  line-height: 133%;
+  line-height: 1.33;
   color: var(--gray);
 }
 
@@ -24,7 +24,7 @@
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
-  line-height: 125%;
+  line-height: 1.25;
   color: var(--main);
 }
 .mileageBox {
@@ -38,31 +38,46 @@
   margin-bottom: 8px;
 }
 
-.inputWrap {
+.wrapper {
   display: flex;
   align-items: center;
 }
+
+.inputWrap {
+  position: relative;
+  width: 160px;
+}
+
 .fieldInput {
-  height: 44px;
-  padding: 12px 98px 12px 16px;
+height: 44px;
+  padding: 12px 16px 12px 60px;
   width: 160px;
   background: var(--inputs);
   border: none;
   outline: none;
-  font-size: 14px;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
-  line-height: 125%;
+  line-height: 1.25;
   color: var(--main);
 }
 
-.fieldInput:first-child {
+.mileageInput {position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--main);
+  pointer-events: none;}
+
+.fromInput {
   border-radius: 12px 0 0 12px;
   border-right: none;
 }
 
-.fieldInput:last-child {
+.toInput {
   border-radius: 0 12px 12px 0;
 }
 

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import CarCard from "../CarCard/CarCard";
 import styles from "./CarList.module.css";
-import { selectCars, selectCarsLoading } from "../../redux/cars/selectors";
+import { selectCars, selectCarsLoading } from "../../redux/cars/selectors.js";
 
 export default function CarsList() {
   const visibleCars = useSelector(selectCars);
