@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     brand: '',
     price: '',
-    mileageFrom: '',
-    mileageTo: ''
+    mileageFrom: null,
+    mileageTo: null
 };
 
 const filtersSlice = createSlice({

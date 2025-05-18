@@ -5,14 +5,16 @@ export const fetchCars = createAsyncThunk('cars/fetchCars', async ({page = 1, br
 try {
     const params = {page, limit:12};
     if (brand) params.brand = brand;
-    if (price) params.price = price;
-    if (mileageFrom != null) params.mileage_gte = mileageFrom;
-if (mileageTo != null) params.mileage_lte = mileageTo;
+    if (price) params.rentalPrice = price;
+    if (mileageFrom != null) params.minMileage = mileageFrom;
+   if (mileageTo != null) params.maxMileage = mileageTo;
 
-    const {data, headers} = await axios.get('/cars', {params});
-    const totalPages = Number(headers['x-total-pages']) || 1;
+    const {data} = await axios.get('/cars', {params});
 
-    return {cars: data, totalPages};
+    const cars = Array.isArray(data.cars) ? data.cars : [];
+    const hasMore = cars.length === 12;
+
+    return { cars, hasMore };
 } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
 }

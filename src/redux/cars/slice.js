@@ -5,7 +5,7 @@ const initialState = {
     items: [],
     isLoading: false,
     error: null,
-    totalPages: 1
+    hasMore: true
 }
 
 const carsSlice = createSlice({
@@ -23,11 +23,13 @@ const carsSlice = createSlice({
             state.error = null;
         }).addCase(fetchCars.fulfilled, (state, action) => {
             state.isLoading = false;
-            const cars = Array.isArray(action.payload?.cars) ? action.payload.cars : [];
-  const totalPages = action.payload?.totalPages ?? 1;
+            
+    const unique = action.payload.cars.filter(
+    car => !state.items.some(existing => existing.id === car.id)
+  );
 
-  state.items = [...state.items, ...cars];
-  state.totalPages = totalPages;
+  state.items = [...state.items, ...unique];
+  state.hasMore = action.payload.hasMore;
         }).addCase(fetchCars.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.payload;

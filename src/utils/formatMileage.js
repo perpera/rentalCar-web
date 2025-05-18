@@ -1,3 +1,2 @@
-export const formatMileage = (value) => {
-    return value.toSting().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-};
+export const formatMileage = (km) =>
+  `${new Intl.NumberFormat("uk-UA").format(km)} km`;
