@@ -1,0 +1,12 @@
+.carsList {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 48px 32px;
+}
+.carsItems {
+  box-sizing: border-box;
+  width: 276px;
+  height: 424px;
+}

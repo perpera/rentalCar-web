@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CarCard from '../../components/CarCard/CarCard';
+import CarList from '../../components/CarList/CarList';
 import Loader from '../../ui/Loader/Loader';
 import LoadMoreBtn from '../../components/LoadMoreBtn/LoadMoreBtn';
 import FilterPanel from '../../components/FilterPanel/FilterPanel';
@@ -84,7 +84,7 @@ export default function Catalog() {
         </p>
       )}
 
-      {cars.length > 0 && <CarCard />}
+      {cars.length > 0 && <CarList />}
 
       {cars.length > 0 && page < totalPages && (
         <div ref={loadMoreRef}><LoadMoreBtn handleChangePage={handleChangePage} /></div>
